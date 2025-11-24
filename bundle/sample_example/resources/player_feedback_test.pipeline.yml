@@ -1,0 +1,12 @@
+resources:
+  pipelines:
+    player_feedback_test:
+      name: Player Feedback Test
+      libraries:
+        - {}
+      catalog: bbyam_demo
+      channel: PREVIEW
+      development: true
+      photon: true
+      schema: player_feedback
+      serverless: true
