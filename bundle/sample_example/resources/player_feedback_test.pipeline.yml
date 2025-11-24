@@ -3,10 +3,13 @@ resources:
     player_feedback_test:
       name: Player Feedback Test
       libraries:
-        - {}
-      catalog: bbyam_demo
-      channel: PREVIEW
+        - glob:
+            include: src/pipeline/transformations/**
+      schema: player_feedback
+      continuous: false
       development: true
       photon: true
-      schema: player_feedback
+      channel: PREVIEW
+      catalog: bbyam_demo
       serverless: true
+      root_path:  /src/pipeline/transformations
