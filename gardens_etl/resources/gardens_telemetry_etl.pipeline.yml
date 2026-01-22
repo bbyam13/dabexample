@@ -1,0 +1,16 @@
+resources:
+  pipelines:
+    gardens_telemetry_etl:
+      name: Gardens Telemetry ETL
+      configuration:
+        "catalog": "bbyam_demo"
+      libraries:
+        - glob:
+            include: ../src/transformations/**
+      catalog: main
+      channel: CURRENT
+      continuous: false
+      photon: true
+      root_path: ../src
+      schema: default
+      serverless: true

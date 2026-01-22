@@ -1,0 +1,42 @@
+# This is a Databricks asset bundle definition for gardens_etl.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+bundle:
+  name: gardens_etl
+  uuid: f7ef2dbd-b9d6-4880-855a-d238b0741a9b
+
+include:
+  - resources/*.yml
+  - resources/*/*.yml
+
+# Variable declarations. These variables are assigned in the dev/prod targets below.
+variables:
+  catalog:
+    description: The catalog to use
+  schema:
+    description: The schema to use
+
+targets:
+  dev:
+    mode: production
+    default: true
+    workspace:
+      host: https://e2-demo-field-eng.cloud.databricks.com
+      root_path: /Workspace/Users/brendan.byam@databricks.com/.bundle/${bundle.name}/${bundle.target}
+    permissions:
+      - user_name: brendan.byam@databricks.com
+        level: CAN_MANAGE
+    variables:
+      catalog: bbyam_demo
+      schema: 1_bronze
+  prod:
+    mode: production
+    workspace:
+      host: https://e2-demo-field-eng.cloud.databricks.com
+      # We explicitly deploy to /Workspace/Users/brendan.byam@databricks.com to make sure we only have a single copy.
+      root_path: /Workspace/Users/brendan.byam@databricks.com/.bundle/${bundle.name}/${bundle.target}
+    variables:
+      catalog: bbyam_demo_prod
+      schema: 1_bronze
+    permissions:
+      - user_name: brendan.byam@databricks.com
+        level: CAN_MANAGE
