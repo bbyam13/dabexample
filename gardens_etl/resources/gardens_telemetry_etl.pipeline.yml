@@ -3,11 +3,11 @@ resources:
     gardens_telemetry_etl:
       name: ${bundle.target} - Gardens Telemetry ETL
       configuration:
-        "catalog": "bbyam_demo"
+        "catalog": ${var.catalog}
       libraries:
         - glob:
             include: ../src/transformations/**
-      catalog: main
+      catalog: ${var.catalog}
       channel: CURRENT
       continuous: false
       photon: true
